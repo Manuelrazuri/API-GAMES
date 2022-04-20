@@ -30,16 +30,13 @@ export const CardGames = ({ game }) => {
       <div>
         <Card
           title={game.title}
-          subTitle={game.genre}
+          subTitle={`${game.genre} • ${game.platform} • ${game.release_date}`}
           style={{ width: "25em" }}
           // footer={footer}
           header={header}
         >
           <p className="m-0" style={{ lineHeight: "1.5" }}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-            sed consequuntur error repudiandae numquam deserunt quisquam
-            repellat libero asperiores earum nam nobis, culpa ratione quam
-            perferendis esse, cupiditate neque quas!
+            {game.short_description}
           </p>
         </Card>
       </div>

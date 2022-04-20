@@ -5,13 +5,21 @@ import "./Gallery.css";
 export const Gallery = () => {
   const URL = "https://www.freetogame.com/api/games";
 
-  const [games, setGames] = useState("Mirko");
+  const [games, setGames] = useState([]);
 
   const getAllGames = async () => {
-    const response = await fetch(URL);
-    const responseJSON = await response.json();
+    try {
+      const response = await fetch(URL);
+      const responseJSON = await response.json();
+      const result = responseJSON.filter(
+        (element) => element.genre === "Social"
+      );
 
-    setGames(responseJSON);
+      console.log(result);
+      setGames(result);
+    } catch (error) {
+      console.warn(error);
+    }
   };
 
   useEffect(() => {
@@ -22,7 +30,7 @@ export const Gallery = () => {
     <div className="container-card">
       {games.map((game) => {
         return (
-          <div>
+          <div key={game?.id}>
             <CardGames game={game} />
           </div>
         );
